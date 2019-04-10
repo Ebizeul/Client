@@ -38,8 +38,11 @@
 	</br>
 	<th>
 		Résultat :
-		<div id="total"></div>
-		
+		<div id="total"></div></br>
+		Lat1<div id="latitude1"></div>
+		Long1<div id="longitude1"></div>
+		Lat2<div id="latitude2"></div>
+		Long2<div id="longitude2"></div>
 	</th>
 	
 	
@@ -70,15 +73,19 @@
 				var latitude1 = parseFloat(varVille1.split(",")[5].split("=")[1].split("]")[0]);
 				var latitude2 = parseFloat(varVille2.split(",")[5].split("=")[1].split("]")[0]);
 				resultat = 6371*Math.acos(
-	 					Math.sin(latitude1)*Math.sin(latitude2)
-	 					+ Math.cos(latitude1)*Math.cos(latitude2)*Math.cos(longitude1 - longitude2));
+	 					Math.sin(latitude1*Math.PI/180)*Math.sin(latitude2*Math.PI/180)
+	 					+ Math.cos(latitude1*Math.PI/180)*Math.cos(latitude2*Math.PI/180)*Math.cos(longitude1*Math.PI/180 - longitude2*Math.PI/180));
 				document.getElementById('total').innerHTML = resultat;
+				document.getElementById('latitude1').innerHTML = latitude1;
+				document.getElementById('longitude1').innerHTML = longitude1;
+				document.getElementById('latitude2').innerHTML = latitude2;
+				document.getElementById('longitude2').innerHTML = longitude2;
 			}	else {
-				document.getElementById('total').innerHTML = 5;
+				document.getElementById('total').innerHTML = "Error";
 			}		
 			
 		} else {
-			document.getElementById('total').innerHTML = 4;
+			document.getElementById('total').innerHTML = "Veuillez renseigner deux villes";
 		}
 		
 		return resultat; 
