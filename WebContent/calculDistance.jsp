@@ -73,7 +73,7 @@
 				var latitude1 = parseFloat(varVille1.split(",")[5].split("=")[1].split("]")[0]);
 				var latitude2 = parseFloat(varVille2.split(",")[5].split("=")[1].split("]")[0]);
 				resultat = 6371*Math.acos(
-	 					Math.sin(latitude1*Math.PI/180)*Math.sin(latitude2*Math.PI/180)
+	 					Math.sin(latitude1*Math.PI/180) * Math.sin(latitude2*Math.PI/180)
 	 					+ Math.cos(latitude1*Math.PI/180)*Math.cos(latitude2*Math.PI/180)*Math.cos(longitude1*Math.PI/180 - longitude2*Math.PI/180));
 				document.getElementById('total').innerHTML = resultat;
 				document.getElementById('latitude1').innerHTML = latitude1;
